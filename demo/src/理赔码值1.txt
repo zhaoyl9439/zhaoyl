@@ -1,0 +1,13 @@
+public static final String RPT_SAVETEMP     = "0";    //???????
+public static final String RPT              = "1";    //?????
+public static final String CANCEL_RPT       = "2";    //?????
+public static final String DSPT             = "3";    //?????
+public static final String ESTMT            = "5";    //?????
+public static final String CHECKLOSS        = "7";    //?????
+public static final String RGST             = "9";    //??????(???????)
+public static final String CANCEL_RGST      = "10";   //??????
+public static final String ADJUST           = "11";   //??????
+public static final String CHECKCLM         = "13";   //?????
+public static final String ENDCASE          = "15";   //???
+public static final String CANCEL_RECOVER   = "18";   //???????
+public static final String REOPEN_ADJUST    = "25";   //???????????

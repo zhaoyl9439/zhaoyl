@@ -1,0 +1,13 @@
+public static final String RPT_SAVETEMP     = "0";    //报案暂存
+public static final String RPT              = "1";    //已报案
+public static final String CANCEL_RPT       = "2";    //已撤案
+public static final String DSPT             = "3";    //已调度
+public static final String ESTMT            = "5";    //已定损
+public static final String CHECKLOSS        = "7";    //已核损
+public static final String RGST             = "9";    //已立案(人工立案)
+public static final String CANCEL_RGST      = "10";   //已销案
+public static final String ADJUST           = "11";   //已理算
+public static final String CHECKCLM         = "13";   //已核赔
+public static final String ENDCASE          = "15";   //已结案
+public static final String CANCEL_RECOVER   = "18";   //销案恢复
+public static final String REOPEN_ADJUST    = "25";   //重开案待理算
