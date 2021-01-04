@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class ReflectionTest {
@@ -46,5 +45,28 @@ public class ReflectionTest {
         showNation.setAccessible(true);
         String nation = (String) showNation.invoke(cat, "中国");
         System.out.println("返回值：" + nation);
+    }
+
+
+    @Test
+    public void test2() throws ClassNotFoundException {
+        // 方式一：调用运行时类的属性：.class
+        Class clazz1 = Cat.class;
+        System.out.println(clazz1);
+        // 方式二：通过运行时类的对象，调用getClass()
+        Cat cat = new Cat();
+        Class clazz2 = cat.getClass();
+        System.out.println(clazz2);
+        // 方式三：调用clss的静态方法forName(String path)
+        Class clazz3 = Class.forName("com.example.demo.iofile.Cat");
+        System.out.println(clazz3);
+        // 方法四：使用类的加载器
+        ClassLoader classLoader = ReflectionTest.class.getClassLoader();
+        Class clzz4 = classLoader.loadClass("com.example.demo.iofile.Cat");
+        System.out.println(clzz4);
+
+        System.out.println(clazz1 == clazz2);
+        System.out.println(clazz1 == clazz3);
+        System.out.println(clazz1 == clzz4);
     }
 }

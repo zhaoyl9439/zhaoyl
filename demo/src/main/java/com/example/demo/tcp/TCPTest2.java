@@ -86,7 +86,6 @@ public class TCPTest2 {
     }
 
     @Test
-    @Scheduled(cron="")
     public void server() {
         ServerSocket ss = null;
         Socket socket = null;
