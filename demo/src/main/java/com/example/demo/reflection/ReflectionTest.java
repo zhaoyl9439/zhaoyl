@@ -3,9 +3,8 @@ package com.example.demo.reflection;
 import com.example.demo.iofile.Cat;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.*;
 
 public class ReflectionTest {
 
@@ -69,4 +68,163 @@ public class ReflectionTest {
         System.out.println(clazz1 == clazz3);
         System.out.println(clazz1 == clzz4);
     }
+
+    /**
+     * 获取当前运行时类的属性结构
+     */
+    @Test
+    public void test3(){
+
+        Class<Peron> clazz = Peron.class;
+        // getFields():获取当前时运行时类及其父类中声明为public访问权限的属性
+        Field[] fields = clazz.getFields();
+        for (Field field : fields) {
+            System.out.println(field);
+        }
+        System.out.println();
+
+        // getDeclaredFields():获取当前时运行时类所有的属性，不包含父类
+        Field[] declaredFields = clazz.getDeclaredFields();
+        for (Field declaredField : declaredFields) {
+            System.out.println(declaredField);
+        }
+
+    }
+
+    /**
+     * 权限修饰符    数据类型    变量
+     */
+    @Test
+    public void test4(){
+        Class<Peron> clazz = Peron.class;
+        Field[] declaredFields = clazz.getDeclaredFields();
+        for (Field declaredField : declaredFields) {
+            // 修饰符
+            int modifiers = declaredField.getModifiers();
+            System.out.print(Modifier.toString(modifiers));
+
+            // 数据类型
+            Class<?> type = declaredField.getType();
+            System.out.print(type.getName() + "\t");
+
+            // 变量名
+            String name = declaredField.getName();
+            System.out.print(name);
+            System.out.println();
+        }
+    }
+
+    /**
+     * 获取构造器
+     */
+    @Test
+    public void otherTest1(){
+        Class clzz = Peron.class;
+
+        // getConstructors():获取当前运行类中生明为public的构造器
+        Constructor[] constructors = clzz.getConstructors();
+        for (Constructor constructor : constructors) {
+            System.out.println(constructor);
+        }
+        System.out.println();
+
+        // getDeclaredConstructors():获取当前运行类中所有的构造器
+        Constructor[] declaredConstructors = clzz.getDeclaredConstructors();
+        for (Constructor declaredConstructor : declaredConstructors) {
+            System.out.println(declaredConstructor);
+        }
+    }
+
+    /**
+     * 获取运行时类的父类
+     */
+    @Test
+    public void otherTest2(){
+
+        Class clazz = Peron.class;
+        Class superclass = clazz.getSuperclass();
+        System.out.println(superclass);
+
+        // 带泛型的父类的泛型
+        Type genericSuperclass = clazz.getGenericSuperclass();
+        System.out.println(genericSuperclass);
+        // 泛型的类型
+        ParameterizedType parameterizedType = (ParameterizedType) genericSuperclass;
+        Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
+        System.out.println(actualTypeArguments[0].getTypeName());
+        System.out.println(((Class)actualTypeArguments[0]).getName());
+    }
+
+    /**
+     * 获取运行时类的实现的接口
+     */
+    @Test
+    public void otherTest3(){
+
+        Class clazz = Peron.class;
+        Class[] superclass = clazz.getInterfaces();
+        for (Class aClass : superclass) {
+            System.out.println(aClass);
+        }
+    }
+
+    /**
+     * 获取运行时类所在的包
+     */
+    @Test
+    public void otherTest4(){
+
+        Class clazz = Peron.class;
+        Package aPackage = clazz.getPackage();
+        System.out.println(aPackage);
+    }
+
+    /**
+     * 获取运行时类声明的注解
+     */
+    @Test
+    public void otherTest5(){
+
+        Class clazz = Peron.class;
+        Annotation[] annotations = clazz.getAnnotations();
+        for (Annotation annotation : annotations) {
+            System.out.println(annotation);
+        }
+    }
+
+    @Test
+    public void test5(){
+        Class clazz = Peron.class;
+
+        // getMethods():获取当前运行时类及其所有父类中声明为public权限的方法
+        Method[] methods = clazz.getMethods();
+        for (Method m : methods) {
+            System.out.println(m);
+        }
+        System.out.println();
+
+        // getDeclaredMethods():获取当前运行时类中声明的方法。（不包含父类中声明的方法）
+        Method[] declaredMethods = clazz.getDeclaredMethods();
+        for (Method m : declaredMethods) {
+            System.out.println(m);
+        }
+        System.out.println();
+    }
+
+    @Test
+    public void test6(){
+
+        Class clazz = Peron.class;
+
+        Method[] methods = clazz.getDeclaredMethods();
+        for (Method method : methods) {
+            // 获取方法声明的注解
+            Annotation[] a = method.getAnnotations();
+            for (Annotation annotation : a) {
+                System.out.println(a);
+            }
+        }
+    }
+
+
 }
