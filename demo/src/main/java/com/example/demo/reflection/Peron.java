@@ -40,6 +40,10 @@ public class Peron extends Creature<String> implements Comparable<String>, MyInt
         return 0;
     }
 
+    private static void showDesc(){
+        System.out.println("静态方法");
+    }
+
     @Override
     public String toString() {
         return "Peron{" +

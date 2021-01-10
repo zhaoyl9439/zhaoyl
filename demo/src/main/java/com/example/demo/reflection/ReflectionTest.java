@@ -156,10 +156,71 @@ public class ReflectionTest {
     }
 
     /**
+     * 获取运行时类指定参数
+     */
+    @Test
+    public void otherTest3() throws Exception {
+
+        Class<Peron> clazz = Peron.class;
+
+        Peron peron = clazz.newInstance();
+        // 获取运行时类中指定变量名的属性
+        Field name = clazz.getDeclaredField("name");
+        // 保证属性是可访问的
+        name.setAccessible(true);
+        // 获取、设置指定对象的此属性值
+        name.set(peron, "Tom");
+
+        System.out.println(name.get(peron));
+    }
+
+    /**
+     * 如何操作运行时类中的方法
+     */
+    @Test
+    public void test7() throws Exception{
+        Class<Peron> clazz = Peron.class;
+        // 获取指定的某个方法
+        Peron peron = clazz.newInstance();
+
+        Method show = clazz.getDeclaredMethod("show", String.class);
+
+        show.setAccessible(true);
+
+        // 方法返回值即为对应参数的方法的返回值, 没有返回值返回null
+        Object chn = show.invoke(peron, "CHN");
+        System.out.println(chn);
+
+        System.out.println("***************静态方法***************");
+
+        Method showDesc = clazz.getDeclaredMethod("showDesc");
+        showDesc.setAccessible(true);
+        // Object invoke = showDesc.invoke(Peron.class);
+        Object invoke = showDesc.invoke(null);
+        System.out.println(invoke);
+
+    }
+
+    /**
+     * 运行时类中指定的构造器
+     */
+    @Test
+    public void test8() throws Exception{
+        Class<Peron> clazz = Peron.class;
+
+        Constructor<Peron> constructor = clazz.getDeclaredConstructor(String.class);
+        constructor.setAccessible(true);
+
+        Peron peron = constructor.newInstance("Tom");
+
+        System.out.println(peron);
+    }
+
+    /**
      * 获取运行时类的实现的接口
      */
     @Test
-    public void otherTest3(){
+    public void otherTest6(){
 
         Class clazz = Peron.class;
         Class[] superclass = clazz.getInterfaces();
