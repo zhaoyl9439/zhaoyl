@@ -1,9 +1,7 @@
 package com.example.demo.generic;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.internal.matchers.Or;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GenericTest {
