@@ -2,9 +2,7 @@ package com.example.demo.buffer;
 
 import org.junit.Test;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
@@ -44,6 +42,37 @@ public class ChannelTest {
      *    聚集写入(Gattering Writes)：将多个缓冲区中的数据聚集到通道中
      *
      */
+
+    // 分散与聚集
+    @Test
+    public void test4() throws IOException {
+        RandomAccessFile rw = new RandomAccessFile("src/money.txt", "rw");
+
+        // 获取通道
+        FileChannel channel1 = rw.getChannel();
+
+        // 分配指定大小的缓冲区
+        ByteBuffer byteBuffer1 = ByteBuffer.allocate(100);
+        ByteBuffer byteBuffer2 = ByteBuffer.allocate(1024);
+
+        // 分散读取
+        ByteBuffer[] buffers = {byteBuffer1, byteBuffer2};
+        channel1.read(buffers);
+
+        for (ByteBuffer byteBuffer: buffers) {
+            byteBuffer.flip();
+        }
+
+        System.out.println(new String(buffers[0].array(), 0, buffers[0].limit()));
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println(new String(buffers[1].array(), 0, buffers[1].limit()));
+
+        // 聚集写入
+        RandomAccessFile rw2 = new RandomAccessFile("src/money2.txt", "rw");
+        FileChannel channel2 = rw2.getChannel();
+
+        channel2.write(buffers);
+    }
 
     // 通道之间的数据传输（直接缓冲区）
     @Test
