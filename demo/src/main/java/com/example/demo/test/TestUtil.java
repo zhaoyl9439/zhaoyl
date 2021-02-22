@@ -6,7 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
-public class testUtil {
+public class TestUtil {
 
     public static void main(String[] args) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
