@@ -47,21 +47,33 @@ public class RroduceConsumer {
 
     public static void main(String[] args) {
         RroduceConsumer pc = new RroduceConsumer();
-        Stream.of("P1", "P2").forEach(n->
-            new Thread("P") {
+        Stream.of("P1", "P2", "P3").forEach(n->
+            new Thread(n) {
                 @Override
                 public void run() {
-                    while (true)
+                    while (true) {
                         pc.produce();
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             }.start()
         );
-        Stream.of("C1", "C2").forEach(n->
-            new Thread("C") {
+        Stream.of("C1", "C2", "C3").forEach(n->
+            new Thread(n) {
                 @Override
                 public void run() {
-                    while (true)
+                    while (true) {
                         pc.consumer();
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             }.start()
         );
