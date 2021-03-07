@@ -1,11 +1,8 @@
-package com.example.demo.synchronizedDemo;
-
-import jdk.nashorn.internal.ir.Block;
+package com.example.demo.thread;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class ThreadPoolSimple {
 

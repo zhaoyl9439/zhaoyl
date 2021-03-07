@@ -1,4 +1,4 @@
-package com.example.demo.synchronizedDemo;
+package com.example.demo.thread;
 
 public class ThreadGroupCreate {
 

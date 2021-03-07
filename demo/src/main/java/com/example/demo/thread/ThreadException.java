@@ -1,4 +1,4 @@
-package com.example.demo.synchronizedDemo;
+package com.example.demo.thread;
 
 import java.util.Arrays;
 import java.util.Optional;
