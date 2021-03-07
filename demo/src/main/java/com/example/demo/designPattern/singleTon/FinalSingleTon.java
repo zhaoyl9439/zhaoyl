@@ -8,12 +8,13 @@ public class FinalSingleTon {
     }
 
     public static FinalSingleTon getInstance() {
+
         return SingleTonInstance.instance;
     }
 
     private static class SingleTonInstance{
 
-        static FinalSingleTon instance = new FinalSingleTon();
+        private static final FinalSingleTon instance = new FinalSingleTon();
     }
 
 }

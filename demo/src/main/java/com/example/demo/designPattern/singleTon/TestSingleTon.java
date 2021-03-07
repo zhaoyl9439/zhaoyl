@@ -88,7 +88,7 @@ class BadSynchronizedSingleTon {
 // 饿汉式 双重加锁
 class SynchronizedSingleton{
 
-    private static SynchronizedSingleton synchronizedSingleton;
+    private static volatile SynchronizedSingleton synchronizedSingleton;
 
     public SynchronizedSingleton() {
     }
