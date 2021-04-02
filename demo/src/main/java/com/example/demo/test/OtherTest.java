@@ -12,6 +12,11 @@ public class OtherTest {
 
         HashMap<String, String> hashMap = new HashMap<>();
 
+        OtherTest.testStatic();
+
+    }
+
+    public static void testStatic(){
 
     }
 }
